@@ -1,0 +1,25 @@
+{
+  "name": "employee_tracker_module_12_qi_chen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricky8221/employee_tracker_Module_12_Qi_Chen.git"
+  },
+  "author": "Qi Chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ricky8221/employee_tracker_Module_12_Qi_Chen/issues"
+  },
+  "homepage": "https://github.com/ricky8221/employee_tracker_Module_12_Qi_Chen#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^9.1.2",
+    "mysql2": "^2.3.3"
+  }
+}
