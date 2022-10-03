@@ -19,7 +19,8 @@
   "homepage": "https://github.com/ricky8221/employee_tracker_Module_12_Qi_Chen#readme",
   "dependencies": {
     "console.table": "^0.10.0",
-    "inquirer": "^9.1.2",
+    "express": "^4.18.1",
+    "inquirer": "^8.2.4",
     "mysql2": "^2.3.3"
   }
 }
