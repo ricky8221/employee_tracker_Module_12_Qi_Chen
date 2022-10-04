@@ -50,6 +50,8 @@ function firstPrompt(){
            "View All Roles",
            "View All Employees",
            "Add A Department",
+           "Add A Employee",
+          //  "Remove A Employee",
            "Add A Role",
            "Update Employee role",
            "End"
@@ -72,6 +74,14 @@ function firstPrompt(){
             case "Add A Department":
                 addADepartment();
                 break;
+
+            case "Add A Employee":
+              addAEmployee();
+              break;
+
+            // case "Remove A Empolyee":
+            //   removeAEmployee();
+            //   break;
 
             case "Add A Role":
                 addARole();
@@ -140,6 +150,97 @@ function addADepartment(){
         });
     });
 }
+
+// Add A Employee function
+function addAEmployee(){
+  const sql = `SELECT id, title, salary FROM role`
+  db.query(sql, (err, res)=>{
+    if (err) throw err;
+    
+    const roleChoices = res.map(({ id, title, salary})=>({
+      value: id, name:`${id} ${title} $${salary}`
+    }));
+    promptInsert(roleChoices);
+  });
+};
+function promptInsert(roleChoices){
+  inquirer
+  .prompt([
+    {
+      type:"input",
+      name:"first_name",
+      message:"What is the first name of the employee?"
+    },
+    {
+      type:"input",
+      name:"last_name",
+      message:"What is the last name of the employee?"
+    },
+    {
+      type:"list",
+      name:"roleID",
+      message:"What is the role of the employee?",
+      choices: roleChoices
+    },
+    {
+      type:"input",
+      name:"managerID",
+      message:"Who is the manager of the employee?"
+    }
+  ])
+  .then(function(answer){
+    var sql = `INSERT INTO employee SET ?`
+    db.query(sql, 
+      {
+      first_name: answer.first_name,
+      last_name: answer.last_name,
+      role_id: answer.roleID,
+      manager_id: answer.managerID
+      },
+    function (err, res){
+      if (err) throw err;
+
+      console.log("Employee Added!")
+      firstPrompt();
+    })
+  });
+}
+// // Remove A Emloyee function
+// function removeAEmployee(){
+//   const sql = `SELECT e.id, e.first_name, e.last_name FROM employee e `
+
+//   db.query(sql, function (err, res){
+//     if (err) throw err;
+
+//     const deleteEmployChoice = res.map(({ id, first_name, last_name})=>({
+//       value:id, name:`${id} ${first_name} ${last_name}`
+//     }));
+//     deletePrompt(deleteEmployChoice);
+//   });
+// }
+
+// function deletePrompt(deleteEmployChoice){
+
+//   inquirer
+//   .prompt([
+//     {
+//       type:"list",
+//       name:"employeeID",
+//       message:"Which employee would you like to delete?",
+//       choices: deleteEmployChoice
+//     }
+//   ])
+//   .then(function (answer) {
+//     const sql = `DELETE FROM employee where ?`;
+//     db.query(sql, {id: answer.employeeID}, function(err, res){
+//       if (err) throw err;
+
+//       console.log("Employee Deleted");
+//       firstPrompt();
+//     });
+//   });
+// }
+
 
 // Add A Roles function
 function addARole(){
