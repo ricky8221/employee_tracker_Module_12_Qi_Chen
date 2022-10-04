@@ -54,4 +54,5 @@ Copyright(c) 2022 Qi Chen
 * WHEN I choose to update an employee role
 * THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 
-！[](image/screenshot.png)
+![](image/screenshot.png)
+https://github.com/ricky8221/employee_tracker_Module_12_Qi_Chen
